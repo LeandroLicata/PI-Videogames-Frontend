@@ -1,10 +1,10 @@
 import Card from "../Card/Card";
 
-export default function CardsContainer({ videogames }) {
+export default function CardsContainer({ videogames, startIndex, endIndex }) {
   return (
     <div>
       {videogames.length ? (
-        videogames.map((videogame, idx) => {
+        videogames.slice(startIndex, endIndex).map((videogame, idx) => {
           return (
             <div key={idx}>
               <Card
