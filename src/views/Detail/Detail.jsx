@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
+import parse from "html-react-parser";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function Detail() {
     <div>
       <h1>{videogame.name}</h1>
       <img src={videogame.background_image} alt="videogame" />
-      <p>{videogame.description}</p>
+      <div>{parse(videogame.description)}</div>
     </div>
   ) : null;
 }
