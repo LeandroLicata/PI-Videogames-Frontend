@@ -12,7 +12,45 @@ const initialState = {
 export const videogameSlice = createSlice({
   name: "videogame",
   initialState,
-  reducers: {},
+  reducers: {
+    sortByName: (state, action) => {
+      let sortedVideogames =
+        action.payload === "a-z"
+          ? [...state.videogames].sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : [...state.videogames].sort((a, b) => {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      state.videogames = sortedVideogames;
+    },
+    sortByRating: (state, action) => {
+      let sortedVideogames =
+        action.payload === "best"
+          ? [...state.videogames].sort(function (a, b) {
+              return b.rating - a.rating;
+            })
+          : [...state.videogames].sort(function (a, b) {
+              return a.rating - b.rating;
+            });
+      return {
+        ...state,
+        videogames: sortedVideogames,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchVideogames.pending, (state) => {
       state.status = "loading";
@@ -39,5 +77,7 @@ export const videogameSlice = createSlice({
     });
   },
 });
+
+export const { sortByName, sortByRating } = videogameSlice.actions;
 
 export default videogameSlice.reducer;

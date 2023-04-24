@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/cyborg/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
