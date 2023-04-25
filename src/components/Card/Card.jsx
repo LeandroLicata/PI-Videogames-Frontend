@@ -15,8 +15,8 @@ const VideogameCard = ({ id, name, genres, background_image }) => {
           
         />
         <Card.Body>
-          <Card.Title className="text-danger fs-6">{name}</Card.Title>
-          <Card.Text className="text-info fs-6">{genres.join(", ")}</Card.Text>
+          <Card.Title className="text-danger">{name}</Card.Title>
+          <Card.Text className="text-info">{genres.join(", ")}</Card.Text>
         </Card.Body>
       </Link>
     </Card>

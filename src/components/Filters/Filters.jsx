@@ -1,12 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   sortByName,
   sortByRating,
+  filterByGenre,
 } from "../../features/videogame/videogameSlice";
+import { fetchGenres } from "../../features/genre/genreThunks";
+import { fetchPlatforms } from "../../features/platform/platformThunks";
 
 export default function Filters({ setCurrentPage, setOrder }) {
   const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genre.genres);
+  console.log(genres)
+  const platforms = useSelector((state) => state.platform.platforms);
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+  }, [dispatch]);
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -20,6 +30,10 @@ export default function Filters({ setCurrentPage, setOrder }) {
     }
     setCurrentPage(1);
   };
+
+  function handleFilter(e) {
+    dispatch(filterByGenre(e.target.value));
+  }
 
   return (
     <div>
@@ -36,7 +50,21 @@ export default function Filters({ setCurrentPage, setOrder }) {
         <option value="best">Highest Rating</option>
         <option value="worst">Lowest Rating</option>
       </select>
+      <select
+        className="select"
+        defaultValue="default"
+        onChange={(e) => handleFilter(e)}
+      >
+        <option value="default" disabled>
+          Filter
+        </option>
+        <option value="all genres">All</option>
+        {genres?.map((g, i) => (
+          <option value={g.name} key={i}>
+            {g.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
-

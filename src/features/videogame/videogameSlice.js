@@ -50,6 +50,20 @@ export const videogameSlice = createSlice({
         videogames: sortedVideogames,
       };
     },
+    filterByGenre: (state, action) => {
+      let allVideogames = state.allVideogames;
+      let filteredVideogames =
+        action.payload === "all genres"
+          ? allVideogames
+          : allVideogames.filter(
+              (v) =>
+                v.genres.find((g) => g === action.payload) === action.payload
+            );
+      return {
+        ...state,
+        videogames: filteredVideogames,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVideogames.pending, (state) => {
@@ -78,6 +92,6 @@ export const videogameSlice = createSlice({
   },
 });
 
-export const { sortByName, sortByRating } = videogameSlice.actions;
+export const { sortByName, sortByRating, filterByGenre } = videogameSlice.actions;
 
 export default videogameSlice.reducer;
