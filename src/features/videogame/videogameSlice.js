@@ -64,6 +64,33 @@ export const videogameSlice = createSlice({
         videogames: filteredVideogames,
       };
     },
+    filterByPlatforms: (state, action) => {
+      let allVideogames = state.allVideogames;
+      let filteredVideogames =
+        action.payload === "all platforms"
+          ? allVideogames
+          : allVideogames.filter(
+              (v) =>
+                v.platforms.find((p) => p === action.payload) === action.payload
+            );
+      return {
+        ...state,
+        videogames: filteredVideogames,
+      };
+    },
+    filterByOrigin: (state, action) => {
+      let allVideogames = state.allVideogames;
+      let filteredVideogames = (action.payload === "created"
+        ? allVideogames.filter((v) => v.createdInDb)
+        : allVideogames.filter((v) => !v.createdInDb));
+      return {
+        ...state,
+        videogames:
+          action.payload === "all videogames"
+            ? allVideogames
+            : filteredVideogames,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVideogames.pending, (state) => {
@@ -92,6 +119,12 @@ export const videogameSlice = createSlice({
   },
 });
 
-export const { sortByName, sortByRating, filterByGenre } = videogameSlice.actions;
+export const {
+  sortByName,
+  sortByRating,
+  filterByGenre,
+  filterByPlatforms,
+  filterByOrigin,
+} = videogameSlice.actions;
 
 export default videogameSlice.reducer;
