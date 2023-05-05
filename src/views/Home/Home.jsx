@@ -15,7 +15,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 16;
+  const ITEMS_PER_PAGE = 12;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
@@ -25,19 +25,12 @@ export default function Home() {
 
   const [order, setOrder] = useState("");
 
-  return videogameStatus === "loading" ? (
-    <Loading />
-  ) : videogameStatus === "failed" ? (
-    <Error />
-  ) : (
+  return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container-fluid">
         <br />
         <div className="row">
-          <div className="col-12">
-            <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
-          </div>
           <div className="col-12">
             <Pagination
               currentPage={currentPage}
@@ -46,12 +39,21 @@ export default function Home() {
               onPageChange={(page) => setCurrentPage(page)}
             />
           </div>
-          <div className="col-12">
-            <CardsContainer
-              videogames={videogames}
-              startIndex={startIndex}
-              endIndex={endIndex}
-            />
+          <div className="col-2">
+            <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+          </div>
+          <div className="col-10">
+            {videogameStatus === "loading" ? (
+              <Loading />
+            ) : videogameStatus === "failed" ? (
+              <Error />
+            ) : (
+              <CardsContainer
+                videogames={videogames}
+                startIndex={startIndex}
+                endIndex={endIndex}
+              />
+            )}
           </div>
           <div className="col-12">
             <Pagination

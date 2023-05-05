@@ -8,7 +8,7 @@ import "./index.css";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/vapor/bootstrap.min.css";
+import "bootswatch/dist/darkly/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 axios.defaults.baseURL = "http://localhost:3001";

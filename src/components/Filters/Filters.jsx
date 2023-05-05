@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   sortByName,
   sortByRating,
@@ -9,12 +9,15 @@ import {
 } from "../../features/videogame/videogameSlice";
 import { fetchGenres } from "../../features/genre/genreThunks";
 import { fetchPlatforms } from "../../features/platform/platformThunks";
+import { searchVideogames } from "../../features/videogame/videogameThunks";
 
 export default function Filters({ setCurrentPage, setOrder }) {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genre.genres);
-  console.log(genres);
   const platforms = useSelector((state) => state.platform.platforms);
+  const [searchedName, setSearchedName] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState("");
 
   useEffect(() => {
     dispatch(fetchGenres());
@@ -46,10 +49,26 @@ export default function Filters({ setCurrentPage, setOrder }) {
     dispatch(filterByOrigin(e.target.value));
   }
 
+  function handleInputChange(e) {
+    e.preventDefault();
+    setSearchedName(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(
+      searchVideogames({
+        name: searchedName,
+        genres: selectedGenre,
+        platforms: selectedPlatform,
+      })
+    );
+  }
+
   return (
     <div className="container mt-3">
-      <div className="row">
-        <div className="col-md-3">
+      <div className="">
+        <div className="my-3">
           <select className="form-select" onChange={(e) => handleSort(e)}>
             <option selected disabled>
               Order
@@ -60,39 +79,35 @@ export default function Filters({ setCurrentPage, setOrder }) {
             <option value="worst">Lowest Rating</option>
           </select>
         </div>
-        <div className="col-md-3">
+        <div className="my-3">
+          <label className="form-label">Filter by Genre</label>
           <select
             className="form-select"
-            onChange={(e) => handleFilterByGenre(e)}
+            onChange={(e) => setSelectedGenre(e.target.value)}
           >
-            <option selected disabled>
-              Filter by Genre
-            </option>
-            <option value="all genres">All</option>
+            <option value="">All</option>
             {genres?.map((g, i) => (
-              <option value={g.name} key={i}>
+              <option value={g.slug} key={i}>
                 {g.name}
               </option>
             ))}
           </select>
         </div>
-        <div className="col-md-3">
+        <div className="my-3">
+          <label className="form-label">Filter by Platform</label>
           <select
             className="form-select"
-            onChange={(e) => handleFilterByPlatform(e)}
+            onChange={(e) => setSelectedPlatform(e.target.value)}
           >
-            <option selected disabled>
-              Filter by Platform
-            </option>
-            <option value="all platforms">All</option>
+            <option value="">All</option>
             {platforms?.map((p, i) => (
-              <option value={p.name} key={i}>
+              <option value={p.id} key={i}>
                 {p.name}
               </option>
             ))}
           </select>
         </div>
-        <div className="col-md-3">
+        <div className="my-3">
           <select
             className="form-select"
             onChange={(e) => handleFilterByOrigin(e)}
@@ -106,6 +121,21 @@ export default function Filters({ setCurrentPage, setOrder }) {
           </select>
         </div>
       </div>
+      <form className="d-flex">
+        <input
+          className="form-control me-sm-2"
+          type="search"
+          placeholder="Search"
+          onChange={(e) => handleInputChange(e)}
+        />
+        <button
+          className="btn btn-secondary my-2 my-sm-0"
+          type="submit"
+          onClick={(e) => handleSubmit(e)}
+        >
+          Search
+        </button>
+      </form>
     </div>
   );
 }

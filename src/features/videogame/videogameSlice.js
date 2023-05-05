@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchVideogames, fetchVideogameById } from "./videogameThunks";
+import { fetchVideogames, fetchVideogameById, searchVideogames } from "./videogameThunks";
 
 const initialState = {
   videogames: [],
@@ -116,6 +116,17 @@ export const videogameSlice = createSlice({
       state.status = "failed";
       state.error = action.error.message;
     });
+    builder.addCase(searchVideogames.pending, (state) => {
+      state.status = "loading"
+    });
+    builder.addCase(searchVideogames.fulfilled, (state, action) => {
+      state.status = "succeeded"
+      state.videogames = action.payload;
+    });
+    builder.addCase(searchVideogames.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    })
   },
 });
 

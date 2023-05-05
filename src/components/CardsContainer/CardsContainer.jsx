@@ -6,7 +6,7 @@ export default function CardsContainer({ videogames, startIndex, endIndex }) {
       {videogames.length ? (
         videogames.slice(startIndex, endIndex).map((videogame, idx) => {
           return (
-            <div key={idx} className="col-6 col-md-4 col-lg-3">
+            <div key={idx} className="col-6 col-md-4 col-lg-4">
               <Card
                 id={videogame.id}
                 name={videogame.name}
@@ -17,7 +17,7 @@ export default function CardsContainer({ videogames, startIndex, endIndex }) {
           );
         })
       ) : (
-        <h1>Loading...</h1>
+        <h1>Not games found</h1>
       )}
     </div>
   );

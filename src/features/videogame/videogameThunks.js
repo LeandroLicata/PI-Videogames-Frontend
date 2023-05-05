@@ -15,4 +15,20 @@ export const fetchVideogameById = createAsyncThunk(
     const response = await axios.get(`/videogames/${id}`);
     return response.data;
   }
-)
+);
+
+export const searchVideogames = createAsyncThunk(
+  "videogames/searchVideogames",
+  async ({ name, genres, platforms }) => {
+    console.log("name:", name);
+    console.log("genres:", genres);
+    console.log("platforms:", platforms);
+    let url = `/videogames?name=${name}`;
+    if (genres) url += `&genres=${genres}`;
+    if (platforms) url += `&platforms=${platforms}`;
+    console.log("url:", url)
+    const response = await axios.get(url);
+    return response.data;
+  }
+);
+

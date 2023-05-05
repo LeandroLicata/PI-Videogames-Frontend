@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container font">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
         <div>
           <div className="navbar-brand text-warning">Videogames</div>
           <button
@@ -21,27 +23,17 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" href="/">
+              <Link className="nav-link" to="/">
                 Add videogame
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" href="/about">
+              <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-sm-2"
-              type="search"
-              placeholder="Search"
-            />
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
