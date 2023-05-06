@@ -52,6 +52,8 @@ export default function Home() {
                 videogames={videogames}
                 startIndex={startIndex}
                 endIndex={endIndex}
+                setOrder={setOrder}
+                setCurrentPage={setCurrentPage}
               />
             )}
           </div>

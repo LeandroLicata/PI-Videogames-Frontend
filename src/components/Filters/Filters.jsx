@@ -1,17 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  sortByName,
-  sortByRating,
-  filterByGenre,
-  filterByPlatforms,
-  filterByOrigin,
-} from "../../features/videogame/videogameSlice";
+
 import { fetchGenres } from "../../features/genre/genreThunks";
 import { fetchPlatforms } from "../../features/platform/platformThunks";
 import { searchVideogames } from "../../features/videogame/videogameThunks";
 
-export default function Filters({ setCurrentPage, setOrder }) {
+export default function Filters() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genre.genres);
   const platforms = useSelector((state) => state.platform.platforms);
@@ -23,31 +17,6 @@ export default function Filters({ setCurrentPage, setOrder }) {
     dispatch(fetchGenres());
     dispatch(fetchPlatforms());
   }, [dispatch]);
-
-  const handleSort = (e) => {
-    e.preventDefault();
-    const selectedValue = e.target.value;
-    if (selectedValue === "a-z" || selectedValue === "z-a") {
-      dispatch(sortByName(selectedValue));
-      setOrder(selectedValue);
-    } else if (selectedValue === "best" || selectedValue === "worst") {
-      dispatch(sortByRating(selectedValue));
-      setOrder(selectedValue);
-    }
-    setCurrentPage(1);
-  };
-
-  function handleFilterByGenre(e) {
-    dispatch(filterByGenre(e.target.value));
-  }
-
-  function handleFilterByPlatform(e) {
-    dispatch(filterByPlatforms(e.target.value));
-  }
-
-  function handleFilterByOrigin(e) {
-    dispatch(filterByOrigin(e.target.value));
-  }
 
   function handleInputChange(e) {
     e.preventDefault();
@@ -66,19 +35,8 @@ export default function Filters({ setCurrentPage, setOrder }) {
   }
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3 card">
       <div className="">
-        <div className="my-3">
-          <select className="form-select" onChange={(e) => handleSort(e)}>
-            <option selected disabled>
-              Order
-            </option>
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-            <option value="best">Highest Rating</option>
-            <option value="worst">Lowest Rating</option>
-          </select>
-        </div>
         <div className="my-3">
           <label className="form-label">Filter by Genre</label>
           <select
@@ -107,33 +65,21 @@ export default function Filters({ setCurrentPage, setOrder }) {
             ))}
           </select>
         </div>
-        <div className="my-3">
-          <select
-            className="form-select"
-            onChange={(e) => handleFilterByOrigin(e)}
-          >
-            <option selected disabled>
-              Filter by Origin
-            </option>
-            <option value="all videogames">All</option>
-            <option value="created">Created</option>
-            <option value="api">Existing</option>
-          </select>
-        </div>
       </div>
-      <form className="d-flex">
+      <form className="">
+        <label className="form-label">Filter by name</label>
         <input
           className="form-control me-sm-2"
           type="search"
-          placeholder="Search"
+          placeholder="Search..."
           onChange={(e) => handleInputChange(e)}
         />
         <button
-          className="btn btn-secondary my-2 my-sm-0"
+          className="btn btn-secondary mt-3 my-sm-0"
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >
-          Search
+          Aply filters
         </button>
       </form>
     </div>
