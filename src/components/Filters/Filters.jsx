@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 import { fetchGenres } from "../../features/genre/genreThunks";
 import { fetchPlatforms } from "../../features/platform/platformThunks";
 import { searchVideogames } from "../../features/videogame/videogameThunks";
@@ -38,7 +37,7 @@ export default function Filters() {
     <div className="container mt-3 card">
       <div className="">
         <div className="my-3">
-          <label className="form-label">Filter by Genre</label>
+          <label className="form-label">Genre</label>
           <select
             className="form-select"
             onChange={(e) => setSelectedGenre(e.target.value)}
@@ -52,7 +51,7 @@ export default function Filters() {
           </select>
         </div>
         <div className="my-3">
-          <label className="form-label">Filter by Platform</label>
+          <label className="form-label">Platform</label>
           <select
             className="form-select"
             onChange={(e) => setSelectedPlatform(e.target.value)}
@@ -67,7 +66,7 @@ export default function Filters() {
         </div>
       </div>
       <form className="">
-        <label className="form-label">Filter by name</label>
+        <label className="form-label">Name</label>
         <input
           className="form-control me-sm-2"
           type="search"
@@ -75,7 +74,7 @@ export default function Filters() {
           onChange={(e) => handleInputChange(e)}
         />
         <button
-          className="btn btn-secondary mt-3 my-sm-0"
+          className="btn btn-secondary my-3 my-sm-3"
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >

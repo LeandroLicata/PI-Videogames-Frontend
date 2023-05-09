@@ -32,7 +32,7 @@ export default function CardsContainer({
   }
   return (
     <div className="row">
-      <div className="my-3">
+      <div className="my-3 col-6">
         <select className="form-select" onChange={(e) => handleSort(e)}>
           <option selected disabled>
             Order
@@ -43,13 +43,13 @@ export default function CardsContainer({
           <option value="worst">Lowest Rating</option>
         </select>
       </div>
-      <div className="my-3">
+      <div className="my-3 col-6">
         <select
           className="form-select"
           onChange={(e) => handleFilterByOrigin(e)}
         >
           <option selected disabled>
-            Filter by Origin
+            Origin
           </option>
           <option value="all videogames">All</option>
           <option value="created">Created</option>

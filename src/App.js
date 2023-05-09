@@ -7,7 +7,7 @@ import Detail from "./views/Detail/Detail";
 
 function App() {
   return (
-    <div className="">
+    <div className="font">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />

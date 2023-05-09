@@ -39,10 +39,10 @@ export default function Home() {
               onPageChange={(page) => setCurrentPage(page)}
             />
           </div>
-          <div className="col-2">
+          <div className="col-3">
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
           </div>
-          <div className="col-10">
+          <div className="col-9">
             {videogameStatus === "loading" ? (
               <Loading />
             ) : videogameStatus === "failed" ? (

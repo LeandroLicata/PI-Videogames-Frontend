@@ -121,6 +121,7 @@ export const videogameSlice = createSlice({
     });
     builder.addCase(searchVideogames.fulfilled, (state, action) => {
       state.status = "succeeded"
+      state.allVideogames = action.payload;
       state.videogames = action.payload;
     });
     builder.addCase(searchVideogames.rejected, (state, action) => {
