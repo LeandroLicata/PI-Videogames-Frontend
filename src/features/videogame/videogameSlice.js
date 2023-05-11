@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchVideogames, fetchVideogameById, searchVideogames } from "./videogameThunks";
+import {
+  fetchVideogames,
+  fetchVideogameById,
+  searchVideogames,
+  addVideogame,
+} from "./videogameThunks";
 
 const initialState = {
   videogames: [],
@@ -50,39 +55,12 @@ export const videogameSlice = createSlice({
         videogames: sortedVideogames,
       };
     },
-    filterByGenre: (state, action) => {
-      let allVideogames = state.allVideogames;
-      let filteredVideogames =
-        action.payload === "all genres"
-          ? allVideogames
-          : allVideogames.filter(
-              (v) =>
-                v.genres.find((g) => g === action.payload) === action.payload
-            );
-      return {
-        ...state,
-        videogames: filteredVideogames,
-      };
-    },
-    filterByPlatforms: (state, action) => {
-      let allVideogames = state.allVideogames;
-      let filteredVideogames =
-        action.payload === "all platforms"
-          ? allVideogames
-          : allVideogames.filter(
-              (v) =>
-                v.platforms.find((p) => p === action.payload) === action.payload
-            );
-      return {
-        ...state,
-        videogames: filteredVideogames,
-      };
-    },
     filterByOrigin: (state, action) => {
       let allVideogames = state.allVideogames;
-      let filteredVideogames = (action.payload === "created"
-        ? allVideogames.filter((v) => v.createdInDb)
-        : allVideogames.filter((v) => !v.createdInDb));
+      let filteredVideogames =
+        action.payload === "created"
+          ? allVideogames.filter((v) => v.createdInDb)
+          : allVideogames.filter((v) => !v.createdInDb);
       return {
         ...state,
         videogames:
@@ -117,26 +95,31 @@ export const videogameSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(searchVideogames.pending, (state) => {
-      state.status = "loading"
+      state.status = "loading";
     });
     builder.addCase(searchVideogames.fulfilled, (state, action) => {
-      state.status = "succeeded"
+      state.status = "succeeded";
       state.allVideogames = action.payload;
       state.videogames = action.payload;
     });
     builder.addCase(searchVideogames.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
-    })
+    });
+    builder.addCase(addVideogame.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(addVideogame.fulfilled, (state) => {
+      state.status = "succeded";
+    });
+    builder.addCase(addVideogame.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
   },
 });
 
-export const {
-  sortByName,
-  sortByRating,
-  filterByGenre,
-  filterByPlatforms,
-  filterByOrigin,
-} = videogameSlice.actions;
+export const { sortByName, sortByRating, filterByOrigin } =
+  videogameSlice.actions;
 
 export default videogameSlice.reducer;

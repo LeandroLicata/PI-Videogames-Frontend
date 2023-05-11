@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 export default function NavBar() {
   return (
@@ -23,7 +21,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/addVideogame">
                 Add videogame
               </Link>
             </li>
