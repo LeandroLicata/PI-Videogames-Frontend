@@ -34,12 +34,12 @@ export default function Filters() {
   }
 
   return (
-    <div className="container mt-3 card">
+    <div className="container mt-3 card border-success">
       <div className="">
         <div className="my-3">
           <label className="form-label">Genre</label>
           <select
-            className="form-select"
+            className="form-select bg-light text-dark"
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
             <option value="">All</option>
@@ -53,7 +53,7 @@ export default function Filters() {
         <div className="my-3">
           <label className="form-label">Platform</label>
           <select
-            className="form-select"
+            className="form-select bg-light text-dark"
             onChange={(e) => setSelectedPlatform(e.target.value)}
           >
             <option value="">All</option>
@@ -68,13 +68,13 @@ export default function Filters() {
       <form className="">
         <label className="form-label">Name</label>
         <input
-          className="form-control me-sm-2"
+          className="form-control me-sm-2 bg-dark text-dark"
           type="search"
           placeholder="Search..."
           onChange={(e) => handleInputChange(e)}
         />
         <button
-          className="btn btn-secondary my-3 my-sm-3"
+          className="btn btn-outline-secondary my-3 my-sm-3"
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >

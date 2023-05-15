@@ -8,7 +8,7 @@ import Form from "./views/Form/Form";
 
 function App() {
   return (
-    <div className="font min-vh-100">
+    <div className="min-vh-100">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />

@@ -31,18 +31,19 @@ export default function Home() {
       <div className="container-fluid">
         <br />
         <div className="row">
-          <div className="col-12">
+          {/* <div className="col-12">
             <Pagination
               currentPage={currentPage}
               itemsPerPage={ITEMS_PER_PAGE}
               totalItems={videogames.length}
               onPageChange={(page) => setCurrentPage(page)}
             />
-          </div>
-          <div className="col-3">
+          </div> */}
+          <div className="col-2 position-fixed mt-5">
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
           </div>
-          <div className="col-9">
+          <div className="col-2"></div>
+          <div className="col-10">
             {videogameStatus === "loading" ? (
               <Loading />
             ) : videogameStatus === "failed" ? (

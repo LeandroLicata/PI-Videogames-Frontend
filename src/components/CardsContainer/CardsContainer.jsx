@@ -31,47 +31,50 @@ export default function CardsContainer({
     dispatch(filterByOrigin(e.target.value));
   }
   return (
-    <div className="row">
-      <div className="my-3 col-6">
-        <select className="form-select" onChange={(e) => handleSort(e)}>
-          <option selected disabled>
-            Order
-          </option>
-          <option value="a-z">A-Z</option>
-          <option value="z-a">Z-A</option>
-          <option value="best">Highest Rating</option>
-          <option value="worst">Lowest Rating</option>
-        </select>
+    <div className="container">
+      <div className="row">
+        <div className="my-3 col-6">
+          <select className="form-select bg-light text-dark" onChange={(e) => handleSort(e)}>
+            <option selected disabled>
+              Order
+            </option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="best">Highest Rating</option>
+            <option value="worst">Lowest Rating</option>
+          </select>
+        </div>
+        <div className="my-3 col-6">
+          <select
+            className="form-select bg-light text-dark"
+            onChange={(e) => handleFilterByOrigin(e)}
+          >
+            <option selected disabled>
+              Origin
+            </option>
+            <option value="all videogames">All</option>
+            <option value="created">Created</option>
+            <option value="api">Existing</option>
+          </select>
+        </div>
+
+        {videogames.length ? (
+          videogames.slice(startIndex, endIndex).map((videogame, idx) => {
+            return (
+              <div key={idx} className="col-6 col-md-4 col-lg-4">
+                <Card
+                  id={videogame.id}
+                  name={videogame.name}
+                  background_image={videogame.background_image}
+                  genres={videogame.genres}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <h1>Not games found</h1>
+        )}
       </div>
-      <div className="my-3 col-6">
-        <select
-          className="form-select"
-          onChange={(e) => handleFilterByOrigin(e)}
-        >
-          <option selected disabled>
-            Origin
-          </option>
-          <option value="all videogames">All</option>
-          <option value="created">Created</option>
-          <option value="api">Existing</option>
-        </select>
-      </div>
-      {videogames.length ? (
-        videogames.slice(startIndex, endIndex).map((videogame, idx) => {
-          return (
-            <div key={idx} className="col-6 col-md-4 col-lg-4">
-              <Card
-                id={videogame.id}
-                name={videogame.name}
-                background_image={videogame.background_image}
-                genres={videogame.genres}
-              />
-            </div>
-          );
-        })
-      ) : (
-        <h1>Not games found</h1>
-      )}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 const VideogameCard = ({ id, name, genres, background_image }) => {
   return (
     <Card
-      className="card border-primary mb-3 overflow-auto"
+      className="card border-warning mb-3 overflow-auto"
       style={{ maxWidth: 350, height: 300 }}
     >
       <Link to={`/detail/${id}`} className="text-decoration-none">
