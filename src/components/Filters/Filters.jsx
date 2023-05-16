@@ -68,7 +68,7 @@ export default function Filters() {
       <form className="">
         <label className="form-label">Name</label>
         <input
-          className="form-control me-sm-2 bg-dark text-dark"
+          className="form-control me-sm-2 bg-dark"
           type="search"
           placeholder="Search..."
           onChange={(e) => handleInputChange(e)}

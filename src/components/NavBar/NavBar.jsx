@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <div>
           <div className="navbar-brand text-warning">Videogames</div>

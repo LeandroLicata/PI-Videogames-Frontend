@@ -67,6 +67,8 @@ export default function CardsContainer({
                   name={videogame.name}
                   background_image={videogame.background_image}
                   genres={videogame.genres}
+                  rating={videogame.rating}
+                  short_screenshots={videogame.short_screenshots}
                 />
               </div>
             );
