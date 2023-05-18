@@ -26,7 +26,7 @@ export default function Detail() {
     <Error />
   ) : videogame !== null ? (
     <div className="container">
-      <h2 className="text-center text-danger mt-3">{videogame.name}</h2>
+      <h2 className="text-center text-success mt-3">{videogame.name}</h2>
       <Row className="mt-4">
         <Col md={6}>
         <Image src={videogame.background_image} fluid />
@@ -39,7 +39,7 @@ export default function Detail() {
           <p className="text-info">Release Date</p>
           <p className="">{videogame.released}</p>
           <p className="text-info">Rating</p>
-          <p className="">{videogame.rating}</p>
+          <p className="">★{videogame.rating}</p>
          
         </Col>
         <Col md={12}>
