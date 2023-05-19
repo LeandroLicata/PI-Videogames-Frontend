@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVideogameById } from "../../features/videogame/videogameThunks";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, NavLink } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
 import parse from "html-react-parser";
-import { NavLink } from "react-router-dom";
-import { Col, Row, Image } from "react-bootstrap";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -20,6 +18,68 @@ export default function Detail() {
 
   const videogame = useSelector((state) => state.videogame.detail);
 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const handleCarouselClick = () => {
+    if (!isFullscreen) {
+      const carouselElement = document.getElementById(
+        "videogameScreenshotsCarousel"
+      );
+
+      if (carouselElement.requestFullscreen) {
+        carouselElement.requestFullscreen();
+      } else if (carouselElement.mozRequestFullScreen) {
+        carouselElement.mozRequestFullScreen();
+      } else if (carouselElement.webkitRequestFullscreen) {
+        carouselElement.webkitRequestFullscreen();
+      } else if (carouselElement.msRequestFullscreen) {
+        carouselElement.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(
+        document.fullscreenElement ||
+          document.mozFullScreenElement ||
+          document.webkitFullscreenElement ||
+          document.msFullscreenElement
+      );
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "msfullscreenchange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
+
   return videogameStatus === "loading" ? (
     <Loading />
   ) : videogameStatus === "failed" ? (
@@ -27,12 +87,9 @@ export default function Detail() {
   ) : videogame !== null ? (
     <div className="container">
       <h2 className="text-center text-success mt-3">{videogame.name}</h2>
-      <Row className="mt-4">
-        <Col md={6}>
-        <Image src={videogame.background_image} fluid />
-        </Col>
-        <Col md={6}>
-        <p className="text-info mt-4">Genres</p>
+      <div className="row mt-4">
+        <div className="col-md-5">
+          <p className="text-info mt-4">Genres</p>
           <p className="">{videogame.genres.join(", ")}</p>
           <p className="text-info">Platforms</p>
           <p className="">{videogame.platforms.join(", ")}</p>
@@ -40,17 +97,81 @@ export default function Detail() {
           <p className="">{videogame.released}</p>
           <p className="text-info">Rating</p>
           <p className="">★{videogame.rating}</p>
-         
-        </Col>
-        <Col md={12}>
-          
+        </div>
+        <div className="col-md-7">
+          <div
+            id="videogameScreenshotsCarousel"
+            className="carousel slide"
+            data-bs-ride="true"
+          >
+            <div className="carousel-indicators">
+              {videogame.screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  data-bs-target="#videogameScreenshotsCarousel"
+                  data-bs-slide-to={index}
+                  className={index === 0 ? "active" : ""}
+                  aria-current={index === 0 ? "true" : "false"}
+                  aria-label={`Slide ${index + 1}`}
+                ></button>
+              ))}
+            </div>
+            <div className="carousel-inner">
+              {videogame.screenshots.map((s, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={
+                      i === 0 ? "carousel-item active" : "carousel-item"
+                    }
+                  >
+                    <img
+                      src={s}
+                      className="d-block w-100"
+                      alt={i}
+                      onClick={handleCarouselClick}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#videogameScreenshotsCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#videogameScreenshotsCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="col-md-12">
           <p className="text-info">Description</p>
           <div className="">{parse(videogame.description)}</div>
-          <NavLink to="/home" className="text-info">
-            Back
-          </NavLink>
-        </Col>
-      </Row>
+        </div>
+
+        <NavLink to="/home" className="text-info">
+          Back
+        </NavLink>
+      </div>
     </div>
   ) : null;
 }
