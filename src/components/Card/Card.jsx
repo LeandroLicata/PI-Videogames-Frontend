@@ -9,22 +9,22 @@ const VideogameCard = ({
   short_screenshots,
 }) => {
   return (
-    <div
-      className="card border-warning mb-3 overflow-auto d-flex flex-column justify-content-end"
-      style={{
-        maxWidth: 350,
-        height: 300,
-        backgroundImage: `url(${background_image})`,
-      }}
-    >
-      <Link to={`/detail/${id}`} className="text-decoration-none">
-        <div className="card-body">
-          <h5
+    <Link to={`/detail/${id}`} className="text-decoration-none">
+      <div
+        className="card border-warning mb-3"
+        style={{
+          maxWidth: 350,
+          height: 300,
+          backgroundImage: `url(${background_image})`,
+        }}
+      >
+        <div className="card-body d-flex flex-column justify-content-end">
+          <h4
             className="card-title text-success"
-            style={{ textShadow: "1px 1px #170229" }}
+            style={{ textShadow: "2px 2px #170229" }}
           >
             {name}
-          </h5>
+          </h4>
           <p
             className="card-text text-light"
             style={{ textShadow: "1px 1px #170229" }}
@@ -32,14 +32,14 @@ const VideogameCard = ({
             {genres.join(", ")}
           </p>
           <p
-            className="card-text text-info"
+            className="card-text text-secondary"
             style={{ textShadow: "1px 1px #170229" }}
           >
             ★{rating}
           </p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

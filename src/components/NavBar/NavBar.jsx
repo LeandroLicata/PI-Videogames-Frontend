@@ -1,11 +1,25 @@
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
+  const imageUrls = [
+    "images/black-mage.gif",
+    "images/crash-bandicoot.gif",
+    "images/mario.gif",
+    "images/ryu.gif",
+    "images/sub-zero.gif",
+    // Agrega aquí las rutas de tus imágenes adicionales
+  ];
+  const randomIndex = Math.floor(Math.random() * imageUrls.length);
+  const selectedImageUrl = imageUrls[randomIndex];
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div className="container">
-        <div>
-          <div className="navbar-brand text-warning">Videogames</div>
+        <div className="col-md-8">
+          <div className="navbar-brand text-warning">
+            <img src="images/sub-zero.gif" alt="Logo" style={{ height: 40 }} />
+            Videogames
+            <img src="images/ryu.gif" alt="Logo" style={{ height: 40 }} />
+          </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -21,6 +35,11 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/addVideogame">
                 Add videogame
               </Link>
@@ -30,6 +49,9 @@ export default function NavBar() {
               <Link className="nav-link" to="/about">
                 About
               </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link">Log In</Link>
             </li>
           </ul>
         </div>

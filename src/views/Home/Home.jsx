@@ -27,7 +27,6 @@ export default function Home() {
 
   return (
     <>
-      <NavBar />
       <div className="container-fluid">
         <br />
         <div className="row">

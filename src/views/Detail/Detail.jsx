@@ -85,20 +85,10 @@ export default function Detail() {
   ) : videogameStatus === "failed" ? (
     <Error />
   ) : videogame !== null ? (
-    <div className="container">
+    <div className="container card border-warning my-2">
       <h2 className="text-center text-success mt-3">{videogame.name}</h2>
       <div className="row mt-4">
-        <div className="col-md-5">
-          <p className="text-info mt-4">Genres</p>
-          <p className="">{videogame.genres.join(", ")}</p>
-          <p className="text-info">Platforms</p>
-          <p className="">{videogame.platforms.join(", ")}</p>
-          <p className="text-info">Release Date</p>
-          <p className="">{videogame.released}</p>
-          <p className="text-info">Rating</p>
-          <p className="">★{videogame.rating}</p>
-        </div>
-        <div className="col-md-7">
+        <div className="col-md-8 container">
           <div
             id="videogameScreenshotsCarousel"
             className="carousel slide"
@@ -128,7 +118,7 @@ export default function Detail() {
                   >
                     <img
                       src={s}
-                      className="d-block w-100"
+                      className="d-block w-100 img-fluid"
                       alt={i}
                       onClick={handleCarouselClick}
                     />
@@ -162,16 +152,24 @@ export default function Detail() {
             </button>
           </div>
         </div>
-
-        <div className="col-md-12">
-          <p className="text-info">Description</p>
+        <div className="col-md-4 mt-4">
+          <p className="text-secondary">Platforms</p>
+          <p className="">{videogame.platforms.join(", ")}</p>
+          <p className="text-secondary">Genres</p>
+          <p className="">{videogame.genres.join(", ")}</p>
+          <p className="text-secondary">Release Date</p>
+          <p className="">{videogame.released}</p>
+          <p className="text-secondary">Rating</p>
+          <p className="">★{videogame.rating}</p>
+        </div>
+        <div className="col-md-12 mt-4">
+          <p className="text-secondary">Description</p>
           <div className="">{parse(videogame.description)}</div>
         </div>
-
-        <NavLink to="/home" className="text-info">
-          Back
-        </NavLink>
       </div>
+      <NavLink to="/" className="btn btn-secondary my-2" role="button">
+        Back
+      </NavLink>
     </div>
   ) : null;
 }

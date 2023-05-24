@@ -15,7 +15,7 @@ body {
 } */
 
 .font {
-  font-family: "Orbitron", cursive;
+  font-family: "Press Start 2P", cursive;
 }
 
 .height {
@@ -45,4 +45,9 @@ body {
 .text-stroke {
   -webkit-text-stroke: 75% black;
   color: white;
+}
+
+/* Agrega este estilo para compensar el espacio ocupado por la barra de navegación */
+body {
+  padding-top: 70px; /* Ajusta la altura según el tamaño de la barra de navegación */
 }
