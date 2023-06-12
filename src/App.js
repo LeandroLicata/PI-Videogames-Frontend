@@ -9,7 +9,7 @@ import About from "./views/About/About";
 
 function App() {
   return (
-    <div className="min-vh-100">
+    <div className="min-vh-100 font">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -95,7 +95,7 @@ export default function Detail() {
             data-bs-ride="true"
           >
             <div className="carousel-indicators">
-              {videogame.screenshots.map((_, index) => (
+              {videogame.screenshots?.map((_, index) => (
                 <button
                   key={index}
                   type="button"
@@ -108,7 +108,7 @@ export default function Detail() {
               ))}
             </div>
             <div className="carousel-inner">
-              {videogame.screenshots.map((s, i) => {
+              {videogame.screenshots?.map((s, i) => {
                 return (
                   <div
                     key={i}

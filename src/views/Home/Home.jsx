@@ -2,7 +2,6 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
-import NavBar from "../../components/NavBar/NavBar";
 import Filters from "../../components/Filters/Filters";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -27,18 +26,17 @@ export default function Home() {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container">
         <br />
         <div className="row">
-          {/* <div className="col-12">
-            <Pagination
-              currentPage={currentPage}
-              itemsPerPage={ITEMS_PER_PAGE}
-              totalItems={videogames.length}
-              onPageChange={(page) => setCurrentPage(page)}
+          <div className="text-center">
+            <img
+              src="/images/kusanagi motoko.png"
+              alt="landing"
+              style={{ height: 300 }}
             />
-          </div> */}
-          <div className="col-2 position-fixed mt-5">
+          </div>
+          <div className="col-2 mt-5 position-fixed">
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
           </div>
           <div className="col-2"></div>
