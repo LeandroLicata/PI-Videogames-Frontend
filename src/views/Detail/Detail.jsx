@@ -89,68 +89,78 @@ export default function Detail() {
       <h2 className="text-center text-success mt-3">{videogame.name}</h2>
       <div className="row mt-4">
         <div className="col-md-8 container">
-          <div
-            id="videogameScreenshotsCarousel"
-            className="carousel slide"
-            data-bs-ride="true"
-          >
-            <div className="carousel-indicators">
-              {videogame.screenshots?.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  data-bs-target="#videogameScreenshotsCarousel"
-                  data-bs-slide-to={index}
-                  className={index === 0 ? "active" : ""}
-                  aria-current={index === 0 ? "true" : "false"}
-                  aria-label={`Slide ${index + 1}`}
-                ></button>
-              ))}
-            </div>
-            <div className="carousel-inner">
-              {videogame.screenshots?.map((s, i) => {
-                return (
-                  <div
-                    key={i}
-                    className={
-                      i === 0 ? "carousel-item active" : "carousel-item"
-                    }
-                  >
-                    <img
-                      src={s}
-                      className="d-block w-100 img-fluid"
-                      alt={i}
-                      onClick={handleCarouselClick}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#videogameScreenshotsCarousel"
-              data-bs-slide="prev"
+          {videogame.screenshots.length ? (
+            <div
+              id="videogameScreenshotsCarousel"
+              className="carousel slide"
+              data-bs-ride="true"
             >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#videogameScreenshotsCarousel"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Next</span>
-            </button>
-          </div>
+              <div className="carousel-indicators">
+                {videogame.screenshots?.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    data-bs-target="#videogameScreenshotsCarousel"
+                    data-bs-slide-to={index}
+                    className={index === 0 ? "active" : ""}
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
+              </div>
+
+              <div className="carousel-inner">
+                {videogame.screenshots.map((s, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className={
+                        i === 0 ? "carousel-item active" : "carousel-item"
+                      }
+                    >
+                      <img
+                        src={s}
+                        className="d-block w-100 img-fluid"
+                        alt={i}
+                        onClick={handleCarouselClick}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
+              <button
+                className="carousel-control-prev"
+                type="button"
+                data-bs-target="#videogameScreenshotsCarousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button
+                className="carousel-control-next"
+                type="button"
+                data-bs-target="#videogameScreenshotsCarousel"
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+            </div>
+          ) : (
+            <img
+              src={videogame.background_image}
+              alt="image"
+              className="img-fluid"
+            />
+          )}
         </div>
         <div className="col-md-4 mt-4">
           <p className="text-secondary">Platforms</p>

@@ -34,9 +34,22 @@ export default function Filters() {
   }
 
   return (
-    <div className="container mt-3 card border-success">
-      <div className="">
-        <div className="my-3">
+    <div className="container mt-3">
+      <div className="row">
+      <div className="col-12">
+      <img src="images/download.png" alt="Logo" style={{ height: 100 }} className="img-fluid"/>
+      <h3 className="text-info">Empower Your Gaming Journey: Dive into a Wealth of Insights on New Releases and Classics.</h3>
+      </div>
+        <div className="col-12">
+          <label className="form-label">Name</label>
+          <input
+            className="form-control me-sm-2 bg-dark"
+            type="search"
+            placeholder="Search..."
+            onChange={(e) => handleInputChange(e)}
+          />
+        </div>
+        <div className="my-3 col-6">
           <label className="form-label">Genre</label>
           <select
             className="form-select bg-light text-dark"
@@ -50,7 +63,7 @@ export default function Filters() {
             ))}
           </select>
         </div>
-        <div className="my-3">
+        <div className="my-3 col-6">
           <label className="form-label">Platform</label>
           <select
             className="form-select bg-light text-dark"
@@ -64,23 +77,16 @@ export default function Filters() {
             ))}
           </select>
         </div>
+        <form className="">
+          <button
+            className="btn btn-outline-secondary my-3 my-sm-3"
+            type="submit"
+            onClick={(e) => handleSubmit(e)}
+          >
+            Aply filters
+          </button>
+        </form>
       </div>
-      <form className="">
-        <label className="form-label">Name</label>
-        <input
-          className="form-control me-sm-2 bg-dark"
-          type="search"
-          placeholder="Search..."
-          onChange={(e) => handleInputChange(e)}
-        />
-        <button
-          className="btn btn-outline-secondary my-3 my-sm-3"
-          type="submit"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Aply filters
-        </button>
-      </form>
     </div>
   );
 }

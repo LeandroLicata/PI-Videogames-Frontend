@@ -29,18 +29,18 @@ export default function Home() {
       <div className="container">
         <br />
         <div className="row">
-          <div className="text-center">
-            <img
-              src="/images/kusanagi motoko.png"
-              alt="landing"
-              style={{ height: 300 }}
-            />
-          </div>
-          <div className="col-2 mt-5 position-fixed">
+          <div className="col-6">
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
           </div>
-          <div className="col-2"></div>
-          <div className="col-10">
+          <div className="text-center col-6">
+            <img
+              src="/images/tachikoma.png"
+              alt="landing"
+              style={{ height: 400 }}
+            />
+          </div>
+
+          <div className="">
             {videogameStatus === "loading" ? (
               <Loading />
             ) : videogameStatus === "failed" ? (
