@@ -11,7 +11,7 @@ const VideogameCard = ({
   return (
     <Link to={`/detail/${id}`} className="text-decoration-none">
       <div
-        className="card border-warning mb-3"
+        className="card border-info mb-3"
         style={{
           maxWidth: 350,
           height: 300,
@@ -20,20 +20,20 @@ const VideogameCard = ({
       >
         <div className="card-body d-flex flex-column justify-content-end">
           <h4
-            className="card-title text-success"
-            style={{ textShadow: "2px 2px #170229" }}
+            className="card-title text-light"
+            style={{ textShadow: "3px 3px 4px #170229" }}
           >
             {name}
           </h4>
           <p
-            className="card-text text-light"
-            style={{ textShadow: "1px 1px #170229" }}
+            className="card-text text-info"
+            style={{ textShadow: "1px 1px 2px #170229" }}
           >
             {genres.join(", ")}
           </p>
           <p
             className="card-text text-secondary"
-            style={{ textShadow: "1px 1px #170229" }}
+            style={{ textShadow: "1px 1px 2px #170229" }}
           >
             ★{rating}
           </p>

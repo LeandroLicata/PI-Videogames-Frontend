@@ -38,7 +38,7 @@ export default function Filters() {
       <div className="row">
       <div className="col-12">
       <img src="images/download.png" alt="Logo" style={{ height: 100 }} className="img-fluid"/>
-      <h3 className="text-info">Empower Your Gaming Journey: Dive into a Wealth of Insights on New Releases and Classics.</h3>
+      <h3 className="text-info text-center">Your ultimate gaming encyclopedia.</h3>
       </div>
         <div className="col-12">
           <label className="form-label">Name</label>
@@ -52,7 +52,7 @@ export default function Filters() {
         <div className="my-3 col-6">
           <label className="form-label">Genre</label>
           <select
-            className="form-select bg-light text-dark"
+            className="form-select bg-info text-dark"
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
             <option value="">All</option>
@@ -66,7 +66,7 @@ export default function Filters() {
         <div className="my-3 col-6">
           <label className="form-label">Platform</label>
           <select
-            className="form-select bg-light text-dark"
+            className="form-select bg-info text-dark"
             onChange={(e) => setSelectedPlatform(e.target.value)}
           >
             <option value="">All</option>
@@ -83,7 +83,7 @@ export default function Filters() {
             type="submit"
             onClick={(e) => handleSubmit(e)}
           >
-            Aply filters
+            Search / Apply filters
           </button>
         </form>
       </div>

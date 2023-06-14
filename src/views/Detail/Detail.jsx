@@ -85,18 +85,18 @@ export default function Detail() {
   ) : videogameStatus === "failed" ? (
     <Error />
   ) : videogame !== null ? (
-    <div className="container card border-warning my-2">
-      <h2 className="text-center text-success mt-3">{videogame.name}</h2>
+    <div className="container card border-info my-2">
+      <h2 className="text-center text-secondary mt-3">{videogame.name}</h2>
       <div className="row mt-4">
         <div className="col-md-8 container">
-          {videogame.screenshots.length ? (
+          {videogame.screenshots?.length ? (
             <div
               id="videogameScreenshotsCarousel"
               className="carousel slide"
               data-bs-ride="true"
             >
               <div className="carousel-indicators">
-                {videogame.screenshots?.map((_, index) => (
+                {videogame.screenshots.map((_, index) => (
                   <button
                     key={index}
                     type="button"
@@ -163,21 +163,21 @@ export default function Detail() {
           )}
         </div>
         <div className="col-md-4 mt-4">
-          <p className="text-secondary">Platforms</p>
+          <p className="text-info">Platforms</p>
           <p className="">{videogame.platforms.join(", ")}</p>
-          <p className="text-secondary">Genres</p>
+          <p className="text-info">Genres</p>
           <p className="">{videogame.genres.join(", ")}</p>
-          <p className="text-secondary">Release Date</p>
+          <p className="text-info">Release Date</p>
           <p className="">{videogame.released}</p>
-          <p className="text-secondary">Rating</p>
+          <p className="text-info">Rating</p>
           <p className="">★{videogame.rating}</p>
         </div>
         <div className="col-md-12 mt-4">
-          <p className="text-secondary">Description</p>
+          <p className="text-info">Description</p>
           <div className="">{parse(videogame.description)}</div>
         </div>
       </div>
-      <NavLink to="/" className="btn btn-secondary my-2" role="button">
+      <NavLink to="/" className="btn btn-outline-secondary my-2" role="button">
         Back
       </NavLink>
     </div>

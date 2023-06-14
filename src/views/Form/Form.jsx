@@ -38,10 +38,10 @@ export default function AddForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="container card border-warning mb-2"
+      className="container card border-info mb-2"
     >
       <fieldset className="row">
-        <legend className="text-center text-danger">Add your videogame</legend>
+        <legend className="text-center text-secondary">Add your videogame</legend>
         <div className="col-md-4 d-flex flex-column justify-content-end">
           <div className="form-group">
             <img
@@ -53,7 +53,7 @@ export default function AddForm() {
         </div>
         <div className="col-md-8">
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">
+            <label className="form-label mt-4 text-info">
               Name:
               <input
                 type="text"
@@ -68,7 +68,7 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">
+            <label className="form-label mt-4 text-info">
               Image:
               <input
                 type="url"
@@ -90,7 +90,7 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">Genres:</label>
+            <label className="form-label mt-4 text-info">Genres:</label>
             <div>
               {genres.map((g, i) => (
                 <label key={i} className="checkbox-label">
@@ -116,7 +116,7 @@ export default function AddForm() {
           </div>
 
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">Platforms:</label>
+            <label className="form-label mt-4 text-info">Platforms:</label>
             <div>
               {platforms.map((p, i) => (
                 <label key={i} className="checkbox-label">
@@ -141,7 +141,7 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">
+            <label className="form-label mt-4 text-info">
               Release date:
               <input
                 type="date"
@@ -151,7 +151,7 @@ export default function AddForm() {
             </label>
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">
+            <label className="form-label mt-4 text-info">
               Rating:
               <input
                 type="number"
@@ -162,7 +162,7 @@ export default function AddForm() {
             </label>
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-warning">
+            <label className="form-label mt-4 text-info">
               Description:
               <textarea
                 className="form-control"
@@ -174,7 +174,7 @@ export default function AddForm() {
               <span className="text-danger">Description is required</span>
             )}
           </div>
-          <button type="submit" className="btn btn-outline-info mb-2">
+          <button type="submit" className="btn btn-outline-secondary mb-2">
             Submit
           </button>
           {Object.keys(errors).length > 0 && (
