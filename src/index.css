@@ -36,20 +36,27 @@ body {
   image-rendering: pixelated;
 }
 
-.card {
+.home-card {
   background-position: center;
   background-size: cover;
-  transition: background-image 0.3s ease;
   overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s
+}
+
+.home-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .text {
+  display: inline-block; 
+  max-width: 100%;
   width: auto;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(7px);
 }
 
 .text:hover {

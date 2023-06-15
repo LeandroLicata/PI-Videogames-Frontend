@@ -41,7 +41,7 @@ export default function Filters() {
       <h3 className="text-info text-center">Your ultimate gaming encyclopedia.</h3>
       </div>
         <div className="col-12">
-          <label className="form-label">Name</label>
+          <label className="form-label">Search by Name</label>
           <input
             className="form-control me-sm-2 bg-dark"
             type="search"
@@ -50,7 +50,7 @@ export default function Filters() {
           />
         </div>
         <div className="my-3 col-6">
-          <label className="form-label">Genre</label>
+          <label className="form-label">Filter by Genre</label>
           <select
             className="form-select bg-info text-dark"
             onChange={(e) => setSelectedGenre(e.target.value)}
@@ -64,7 +64,7 @@ export default function Filters() {
           </select>
         </div>
         <div className="my-3 col-6">
-          <label className="form-label">Platform</label>
+          <label className="form-label">Filter by Platform</label>
           <select
             className="form-select bg-info text-dark"
             onChange={(e) => setSelectedPlatform(e.target.value)}
