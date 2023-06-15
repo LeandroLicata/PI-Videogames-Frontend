@@ -97,6 +97,8 @@ export default function AddForm() {
                   <input
                     type="checkbox"
                     value={g.slug}
+                    className="ms-2 me-1"
+                    // style={{margin}}
                     {...register(`genres`, {
                       validate: {
                         min: (value) =>
@@ -123,6 +125,7 @@ export default function AddForm() {
                   <input
                     type="checkbox"
                     value={p.id}
+                    className="ms-2 me-1"
                     {...register(`platforms`, {
                       validate: {
                         min: (value) =>
