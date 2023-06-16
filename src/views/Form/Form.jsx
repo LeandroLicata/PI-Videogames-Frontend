@@ -4,6 +4,8 @@ import { addVideogame } from "../../features/videogame/videogameThunks";
 import { useEffect } from "react";
 import { fetchGenres } from "../../features/genre/genreThunks";
 import { fetchPlatforms } from "../../features/platform/platformThunks";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function AddForm() {
   const {
@@ -15,6 +17,8 @@ export default function AddForm() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const onSubmit = (formData) => {
     formData.genres = formData.genres.map((genreSlug) =>
       genres.find((genre) => genre.slug === genreSlug)
@@ -24,7 +28,23 @@ export default function AddForm() {
       platforms.find((platform) => platform.id === parseInt(platformId))
     );
     dispatch(addVideogame(formData));
-    console.log(formData);
+      // .then(() => {
+      //   Swal.fire({
+      //     icon: "success",
+      //     title: "Game Added",
+      //     text: "The video game has been successfully added.",
+      //   });
+      // })
+      // .catch(() => {
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "Error",
+      //     text: "An error occurred while adding the video game.",
+      //   });
+      // });
+    // .finally(() => {
+    //   Swal.close(); // Close the loading modal if it's still open
+    // });
   };
 
   const genres = useSelector((state) => state.genre.genres);
@@ -35,13 +55,44 @@ export default function AddForm() {
     dispatch(fetchPlatforms());
   }, [dispatch]);
 
+  const status = useSelector((state) => state.videogame.status);
+
+  useEffect(() => {
+    if (status === "loading") {
+      Swal.fire({
+        title: "Uploading your game",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    } else if (status === "added succeeded") {
+      Swal.fire({
+        icon: "success",
+        title: "Game Added",
+        text: "The video game has been successfully added.",
+      });
+    } else if (status === "failed") {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "An error occurred while adding the video game.",
+      });
+    }
+  }, [status]);
+  
+
+  const videogames = useSelector((state) => state.videogame.videogames);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="container card border-info mb-2"
     >
       <fieldset className="row">
-        <legend className="text-center text-secondary">Add your videogame</legend>
+        <legend className="text-center text-secondary">
+          Add your videogame
+        </legend>
         <div className="col-md-4 d-flex flex-column justify-content-end">
           <div className="form-group">
             <img
@@ -53,7 +104,7 @@ export default function AddForm() {
         </div>
         <div className="col-md-8">
           <div className="form-group">
-            <label className="form-label mt-4 text-info">
+            <label className="form-label mt-3 text-info me-2">
               Name:
               <input
                 type="text"
@@ -68,7 +119,7 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-info">
+            <label className="form-label mt-3 text-info me-2">
               Image:
               <input
                 type="url"
@@ -90,7 +141,7 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-info">Genres:</label>
+            <label className="form-label mt-3 text-info">Genres:</label>
             <div>
               {genres.map((g, i) => (
                 <label key={i} className="checkbox-label">
@@ -118,7 +169,7 @@ export default function AddForm() {
           </div>
 
           <div className="form-group">
-            <label className="form-label mt-4 text-info">Platforms:</label>
+            <label className="form-label mt-3 text-info">Platforms:</label>
             <div>
               {platforms.map((p, i) => (
                 <label key={i} className="checkbox-label">
@@ -144,17 +195,25 @@ export default function AddForm() {
             )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-info">
+            <label className="form-label mt-3 text-info me-2">
               Release date:
               <input
                 type="date"
                 className="form-control"
-                {...register("released")}
+                {...register("released", {
+                  pattern: {
+                    value: /^(\d{4})-(\d{2})-(\d{2})$/,
+                    message: "Please enter a valid date in the format",
+                  },
+                })}
               />
             </label>
+            {errors.released && (
+              <span className="text-danger">{errors.released.message}</span>
+            )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-info">
+            <label className="form-label mt-3 text-info me-2">
               Rating:
               <input
                 type="number"
@@ -163,9 +222,14 @@ export default function AddForm() {
                 {...register("rating", { min: 0, max: 5 })}
               />
             </label>
+            {errors.rating && (
+              <span className="text-danger">
+                Please enter a rating between 0 and 5
+              </span>
+            )}
           </div>
           <div className="form-group">
-            <label className="form-label mt-4 text-info">
+            <label className="form-label mt-3 text-info me-2">
               Description:
               <textarea
                 className="form-control"
@@ -177,7 +241,10 @@ export default function AddForm() {
               <span className="text-danger">Description is required</span>
             )}
           </div>
-          <button type="submit" className="btn btn-outline-secondary mb-2">
+          <button
+            type="submit"
+            className="btn btn-outline-secondary mt-3 mb-2 me-2"
+          >
             Submit
           </button>
           {Object.keys(errors).length > 0 && (

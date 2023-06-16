@@ -110,7 +110,7 @@ export const videogameSlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(addVideogame.fulfilled, (state) => {
-      state.status = "succeded";
+      state.status = "added succeded";
     });
     builder.addCase(addVideogame.rejected, (state, action) => {
       state.status = "failed";
