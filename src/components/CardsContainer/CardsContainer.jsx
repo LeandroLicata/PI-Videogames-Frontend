@@ -74,7 +74,7 @@ export default function CardsContainer({
             );
           })
         ) : (
-          <h1>Not games found</h1>
+          <h1 className="text-center">Not games found</h1>
         )}
       </div>
     </div>

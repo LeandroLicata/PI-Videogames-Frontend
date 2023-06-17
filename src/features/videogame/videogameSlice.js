@@ -4,6 +4,7 @@ import {
   fetchVideogameById,
   searchVideogames,
   addVideogame,
+  deleteVideogame,
 } from "./videogameThunks";
 
 const initialState = {
@@ -113,6 +114,16 @@ export const videogameSlice = createSlice({
       state.status = "added succeded";
     });
     builder.addCase(addVideogame.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    builder.addCase(deleteVideogame.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(deleteVideogame.fulfilled, (state) => {
+      state.status = "game deleted";
+    });
+    builder.addCase(deleteVideogame.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

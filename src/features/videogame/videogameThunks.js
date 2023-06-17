@@ -35,3 +35,11 @@ export const addVideogame = createAsyncThunk(
     return response.data;
   }
 );
+
+export const deleteVideogame = createAsyncThunk(
+  "videogames/deleteVideogame",
+  async (id) => {
+    const response = await axios.delete(`/videogames/${id}`);
+    return response.data;
+  }
+)

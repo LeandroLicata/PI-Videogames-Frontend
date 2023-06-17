@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVideogameById } from "../../features/videogame/videogameThunks";
+import {
+  fetchVideogameById,
+  deleteVideogame,
+} from "../../features/videogame/videogameThunks";
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
 import parse from "html-react-parser";
+import Swal from "sweetalert2";
 
 export default function Detail() {
   const dispatch = useDispatch();
   const videogameStatus = useSelector((state) => state.videogame.status);
   const params = useParams();
   const id = params.id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchVideogameById(id));
@@ -79,6 +84,26 @@ export default function Detail() {
       );
     };
   }, []);
+
+  const handleDeleteGame = () => {
+    dispatch(deleteVideogame(id))
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Game Deleted",
+          text: "The game has been successfully deleted",
+        }).then(() => {
+          navigate("/");
+        });
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An error occurred while deleting the video game.",
+        });
+      });
+  };
 
   return videogameStatus === "loading" ? (
     <Loading />
@@ -180,6 +205,11 @@ export default function Detail() {
       <NavLink to="/" className="btn btn-outline-secondary my-2" role="button">
         Back
       </NavLink>
+      {id.length === 24 ? (
+        <btn className="btn btn-outline-danger my-2" onClick={handleDeleteGame}>
+          Delete game
+        </btn>
+      ) : null}
     </div>
   ) : null;
 }
