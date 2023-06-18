@@ -11,7 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/vapor/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://gamepedia-back.onrender.com";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
