@@ -108,10 +108,10 @@ export const videogameSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(addVideogame.pending, (state) => {
-      state.status = "loading";
+      state.status = "uploading";
     });
     builder.addCase(addVideogame.fulfilled, (state) => {
-      state.status = "added succeded";
+      state.status = "added succeeded";
     });
     builder.addCase(addVideogame.rejected, (state, action) => {
       state.status = "failed";

@@ -15,7 +15,7 @@ const VideogameCard = ({
         style={{
           maxWidth: 350,
           height: 300,
-          backgroundImage: `url(${background_image})`,
+          backgroundImage: `url(${background_image || "/images/no-signal.avif"})`,
         }}
       >
         <div className="card-body d-flex flex-column justify-content-end">

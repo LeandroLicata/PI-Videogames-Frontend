@@ -36,10 +36,17 @@ export default function Filters() {
   return (
     <div className="container mt-3">
       <div className="row">
-      <div className="col-12">
-      <img src="images/download.png" alt="Logo" style={{ height: 100 }} className="img-fluid"/>
-      <h3 className="text-info text-center">Your ultimate gaming encyclopedia.</h3>
-      </div>
+        <div className="col-12">
+          <img
+            src="images/download.png"
+            alt="Logo"
+            style={{ height: 100 }}
+            className="img-fluid"
+          />
+          <h3 className="text-info text-center">
+            Your ultimate gaming encyclopedia.
+          </h3>
+        </div>
         <div className="col-12">
           <label className="form-label">Search by Name</label>
           <input
@@ -50,7 +57,7 @@ export default function Filters() {
           />
         </div>
         <div className="my-3 col-6">
-          <label className="form-label">Filter by Genre</label>
+          <label className="form-label">Genre filter</label>
           <select
             className="form-select bg-info text-dark"
             onChange={(e) => setSelectedGenre(e.target.value)}
@@ -64,7 +71,7 @@ export default function Filters() {
           </select>
         </div>
         <div className="my-3 col-6">
-          <label className="form-label">Filter by Platform</label>
+          <label className="form-label">Platform filter</label>
           <select
             className="form-select bg-info text-dark"
             onChange={(e) => setSelectedPlatform(e.target.value)}

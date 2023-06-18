@@ -28,23 +28,6 @@ export default function AddForm() {
       platforms.find((platform) => platform.id === parseInt(platformId))
     );
     dispatch(addVideogame(formData));
-      // .then(() => {
-      //   Swal.fire({
-      //     icon: "success",
-      //     title: "Game Added",
-      //     text: "The video game has been successfully added.",
-      //   });
-      // })
-      // .catch(() => {
-      //   Swal.fire({
-      //     icon: "error",
-      //     title: "Error",
-      //     text: "An error occurred while adding the video game.",
-      //   });
-      // });
-    // .finally(() => {
-    //   Swal.close(); // Close the loading modal if it's still open
-    // });
   };
 
   const genres = useSelector((state) => state.genre.genres);
@@ -58,7 +41,7 @@ export default function AddForm() {
   const status = useSelector((state) => state.videogame.status);
 
   useEffect(() => {
-    if (status === "loading") {
+    if (status === "uploading") {
       Swal.fire({
         title: "Uploading your game",
         allowOutsideClick: false,
@@ -71,7 +54,9 @@ export default function AddForm() {
         icon: "success",
         title: "Game Added",
         text: "The video game has been successfully added.",
-      });
+      }).then(() => {
+        navigate("/")
+      })
     } else if (status === "failed") {
       Swal.fire({
         icon: "error",
@@ -93,8 +78,8 @@ export default function AddForm() {
         <legend className="text-center text-secondary">
           Add your videogame
         </legend>
-        <div className="col-md-4 d-flex flex-column justify-content-end">
-          <div className="form-group">
+        <div className="col-4 d-flex flex-column justify-content-end">
+          <div className="form-group d-none d-lg-block">
             <img
               src="/images/kusanagi motoko.png"
               alt="Imagen"
@@ -102,7 +87,7 @@ export default function AddForm() {
             />
           </div>
         </div>
-        <div className="col-md-8">
+        <div className="col-lg-8 col-md-12">
           <div className="form-group">
             <label className="form-label mt-3 text-info me-2">
               Name:

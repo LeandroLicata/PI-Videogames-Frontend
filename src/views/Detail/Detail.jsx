@@ -113,7 +113,7 @@ export default function Detail() {
     <div className="container card border-info my-2">
       <h2 className="text-center text-secondary mt-3">{videogame.name}</h2>
       <div className="row mt-4">
-        <div className="col-md-8 container">
+        <div className="col-12 container">
           {videogame.screenshots?.length ? (
             <div
               id="videogameScreenshotsCarousel"
@@ -180,14 +180,16 @@ export default function Detail() {
               </button>
             </div>
           ) : (
-            <img
-              src={videogame.background_image}
+            <div className="text-center">
+              <img
+              src={videogame.background_image || "/images/no-signal.avif"}
               alt="image"
               className="img-fluid"
             />
+            </div>
           )}
         </div>
-        <div className="col-md-4 mt-4">
+        <div className="col-12 mt-4">
           <p className="text-info">Platforms</p>
           <p className="">{videogame.platforms.join(", ")}</p>
           <p className="text-info">Genres</p>

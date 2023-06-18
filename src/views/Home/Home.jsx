@@ -25,18 +25,16 @@ export default function Home() {
   const [order, setOrder] = useState("");
 
   return (
-    <>
       <div className="container">
-        <br />
         <div className="row">
-          <div className="col-6">
+          <div className="col-md-6 col-sm-12">
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
           </div>
-          <div className="text-center col-6">
+          <div className="text-center col-md-6 d-none d-md-block">
             <img
               src="/images/tachikoma.png"
               alt="landing"
-              style={{ height: 400 }}
+              className="img-fluid"
             />
           </div>
 
@@ -65,6 +63,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    
   );
 }
