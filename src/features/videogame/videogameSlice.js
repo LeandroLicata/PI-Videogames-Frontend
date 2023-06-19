@@ -30,8 +30,8 @@ export const videogameSlice = createSlice({
         sortedVideogames = [...state.videogames].sort((a, b) =>
           b.name.localeCompare(a.name)
         );
-      } else {
-        sortedVideogames = state.videogames;
+      } else if (action.payload === "default") {
+        sortedVideogames = state.allVideogames;
       }
       return {
         ...state,

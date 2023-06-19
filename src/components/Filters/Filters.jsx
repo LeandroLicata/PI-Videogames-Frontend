@@ -34,7 +34,7 @@ export default function Filters() {
   }
 
   return (
-    <div className="container mt-3">
+    <form className="container mt-3">
       <div className="row">
         <div className="col-12">
           <img
@@ -84,7 +84,7 @@ export default function Filters() {
             ))}
           </select>
         </div>
-        <form className="">
+        <div className="">
           <button
             className="btn btn-outline-secondary my-3 my-sm-3"
             type="submit"
@@ -92,8 +92,8 @@ export default function Filters() {
           >
             Search / Apply filters
           </button>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   );
 }

@@ -14,10 +14,15 @@ export default function CardsContainer({
   setCurrentPage,
 }) {
   const dispatch = useDispatch();
+  
   const handleSort = (e) => {
     e.preventDefault();
     const selectedValue = e.target.value;
-    if (selectedValue === "a-z" || selectedValue === "z-a") {
+    if (
+      selectedValue === "a-z" ||
+      selectedValue === "z-a" ||
+      selectedValue === "default"
+    ) {
       dispatch(sortByName(selectedValue));
       setOrder(selectedValue);
     } else if (selectedValue === "best" || selectedValue === "worst") {
@@ -30,18 +35,20 @@ export default function CardsContainer({
   function handleFilterByOrigin(e) {
     dispatch(filterByOrigin(e.target.value));
   }
+
+  
   return (
     <div className="container">
       <div className="row">
         <div className="my-3 col-6">
+          <label htmlFor="sort">Sort</label>
           <select
-            defaultValue=""
-            className="form-select bg-light text-dark"
+            id="sort"
+            defaultValue="default"
+            className="form-select bg-info text-dark"
             onChange={(e) => handleSort(e)}
           >
-            <option value="" disabled>
-              Order
-            </option>
+            <option value="default">Default</option>
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
             <option value="best">Highest Rating</option>
@@ -49,19 +56,19 @@ export default function CardsContainer({
           </select>
         </div>
         <div className="my-3 col-6">
+          <label htmlFor="origin filter">Origin</label>
           <select
-            defaultValue=""
-            className="form-select bg-light text-dark"
+            id="origin filter"
+            defaultValue="all videogames"
+            className="form-select bg-info text-dark"
             onChange={(e) => handleFilterByOrigin(e)}
           >
-            <option value="" disabled>
-              Origin
-            </option>
             <option value="all videogames">All</option>
-            <option value="created">Created</option>
-            <option value="api">Existing</option>
+            <option value="created">Added by the community</option>
+            <option value="api">Official games</option>
           </select>
         </div>
+        
 
         {videogames.length ? (
           videogames.slice(startIndex, endIndex).map((videogame, idx) => {

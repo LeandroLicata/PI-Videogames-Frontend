@@ -19,50 +19,55 @@ export default function Home() {
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
   useEffect(() => {
-    dispatch(fetchVideogames());
-  }, [dispatch]);
+    if (
+      videogameStatus === "idle" ||
+      videogameStatus === "added succeeded" ||
+      videogameStatus === "game deleted"
+    ) {
+      dispatch(fetchVideogames);
+    }
+  }, [dispatch, videogameStatus]);
 
   const [order, setOrder] = useState("");
 
   return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 col-sm-12">
-            <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
-          </div>
-          <div className="text-center col-md-6 d-none d-md-block">
-            <img
-              src="/images/tachikoma.png"
-              alt="landing"
-              className="img-fluid"
-            />
-          </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+        </div>
+        <div className="text-center col-md-6 d-none d-md-block">
+          <img
+            src="/images/tachikoma.png"
+            alt="landing"
+            className="img-fluid"
+          />
+        </div>
 
-          <div className="">
-            {videogameStatus === "loading" ? (
-              <Loading />
-            ) : videogameStatus === "failed" ? (
-              <Error />
-            ) : (
-              <CardsContainer
-                videogames={videogames}
-                startIndex={startIndex}
-                endIndex={endIndex}
-                setOrder={setOrder}
-                setCurrentPage={setCurrentPage}
-              />
-            )}
-          </div>
-          <div className="col-12">
-            <Pagination
-              currentPage={currentPage}
-              itemsPerPage={ITEMS_PER_PAGE}
-              totalItems={videogames.length}
-              onPageChange={(page) => setCurrentPage(page)}
+        <div className="">
+          {videogameStatus === "loading" ? (
+            <Loading />
+          ) : videogameStatus === "failed" ? (
+            <Error />
+          ) : (
+            <CardsContainer
+              videogames={videogames}
+              startIndex={startIndex}
+              endIndex={endIndex}
+              setOrder={setOrder}
+              setCurrentPage={setCurrentPage}
             />
-          </div>
+          )}
+        </div>
+        <div className="col-12">
+          <Pagination
+            currentPage={currentPage}
+            itemsPerPage={ITEMS_PER_PAGE}
+            totalItems={videogames.length}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         </div>
       </div>
-    
+    </div>
   );
 }
