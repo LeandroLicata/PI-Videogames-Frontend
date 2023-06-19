@@ -54,7 +54,7 @@ export default function About() {
         </a>
         <br />
         <img
-          src="/images/test.png"
+          src="/images/thank-you.png"
           alt="motoko"
           className="img-fluid"
           style={{ height: 200}}

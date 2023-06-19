@@ -38,7 +38,7 @@ export default function Filters() {
       <div className="row">
         <div className="col-12">
           <img
-            src="images/download.png"
+            src="images/logo-big.png"
             alt="Logo"
             style={{ height: 100 }}
             className="img-fluid"
