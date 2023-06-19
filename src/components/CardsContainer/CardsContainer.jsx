@@ -34,8 +34,12 @@ export default function CardsContainer({
     <div className="container">
       <div className="row">
         <div className="my-3 col-6">
-          <select className="form-select bg-light text-dark" onChange={(e) => handleSort(e)}>
-            <option selected disabled>
+          <select
+            defaultValue=""
+            className="form-select bg-light text-dark"
+            onChange={(e) => handleSort(e)}
+          >
+            <option value="" disabled>
               Order
             </option>
             <option value="a-z">A-Z</option>
@@ -46,10 +50,11 @@ export default function CardsContainer({
         </div>
         <div className="my-3 col-6">
           <select
+            defaultValue=""
             className="form-select bg-light text-dark"
             onChange={(e) => handleFilterByOrigin(e)}
           >
-            <option selected disabled>
+            <option value="" disabled>
               Origin
             </option>
             <option value="all videogames">All</option>

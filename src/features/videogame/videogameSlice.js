@@ -20,27 +20,23 @@ export const videogameSlice = createSlice({
   initialState,
   reducers: {
     sortByName: (state, action) => {
-      let sortedVideogames =
-        action.payload === "a-z"
-          ? [...state.videogames].sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : [...state.videogames].sort((a, b) => {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
-      state.videogames = sortedVideogames;
+      let sortedVideogames = null;
+
+      if (action.payload === "a-z") {
+        sortedVideogames = [...state.videogames].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else if (action.payload === "z-a") {
+        sortedVideogames = [...state.videogames].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+      } else {
+        sortedVideogames = state.videogames;
+      }
+      return {
+        ...state,
+        videogames: sortedVideogames,
+      };
     },
     sortByRating: (state, action) => {
       let sortedVideogames =
