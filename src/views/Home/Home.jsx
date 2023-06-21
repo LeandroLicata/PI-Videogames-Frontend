@@ -19,14 +19,8 @@ export default function Home() {
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
   useEffect(() => {
-    if (
-      videogameStatus === "idle" ||
-      videogameStatus === "added succeeded" ||
-      videogameStatus === "game deleted"
-    ) {
-      dispatch(fetchVideogames);
-    }
-  }, [dispatch, videogameStatus]);
+    dispatch(fetchVideogames);
+  }, [dispatch]);
 
   const [order, setOrder] = useState("");
 
