@@ -1,40 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { fetchGenres } from "../../features/genre/genreThunks";
-import { fetchPlatforms } from "../../features/platform/platformThunks";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import { searchVideogames } from "../../features/videogame/videogameThunks";
+import useFilters from "../../hooks/useFilters";
 
 export default function Filters() {
   const dispatch = useDispatch();
-  const genres = useSelector((state) => state.genre.genres);
-  const platforms = useSelector((state) => state.platform.platforms);
-  const [searchedName, setSearchedName] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const { register, handleSubmit, setValue } = useForm();
+  const { genres, platforms } = useFilters();
 
-  useEffect(() => {
-    dispatch(fetchGenres());
-    dispatch(fetchPlatforms());
-  }, [dispatch]);
-
-  function handleInputChange(e) {
-    e.preventDefault();
-    setSearchedName(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(
-      searchVideogames({
-        name: searchedName,
-        genres: selectedGenre,
-        platforms: selectedPlatform,
-      })
-    );
-  }
+  const onSubmit = (data) => {
+    dispatch(searchVideogames(data));
+  };
 
   return (
-    <form className="container mt-3">
+    <form className="container mt-3" onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
         <div className="col-12">
           <img
@@ -51,16 +30,16 @@ export default function Filters() {
           <label className="form-label">Search by Name</label>
           <input
             className="form-control me-sm-2 bg-dark"
-            type="search"
+            type="text"
             placeholder="Search..."
-            onChange={(e) => handleInputChange(e)}
+            {...register("name")}
           />
         </div>
         <div className="my-3 col-6">
           <label className="form-label">Genre filter</label>
           <select
             className="form-select bg-info text-dark"
-            onChange={(e) => setSelectedGenre(e.target.value)}
+            {...register("genres")}
           >
             <option value="">All</option>
             {genres?.map((g, i) => (
@@ -74,7 +53,7 @@ export default function Filters() {
           <label className="form-label">Platform filter</label>
           <select
             className="form-select bg-info text-dark"
-            onChange={(e) => setSelectedPlatform(e.target.value)}
+            {...register("platforms")}
           >
             <option value="">All</option>
             {platforms?.map((p, i) => (
@@ -88,7 +67,6 @@ export default function Filters() {
           <button
             className="btn btn-outline-secondary my-3 my-sm-3"
             type="submit"
-            onClick={(e) => handleSubmit(e)}
           >
             Search / Apply filters
           </button>

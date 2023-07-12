@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addVideogame } from "../../features/videogame/videogameThunks";
-import { useEffect } from "react";
-import { fetchGenres } from "../../features/genre/genreThunks";
-import { fetchPlatforms } from "../../features/platform/platformThunks";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import useFilters from "../../hooks/useFilters";
+import useVideogames from "../../hooks/useVideogames";
+import useAlerts from "../../hooks/useAlerts";
 
 export default function AddForm() {
+  const { genres, platforms } = useFilters();
+  const { videogameStatus } = useVideogames();
   const {
     register,
     handleSubmit,
@@ -16,8 +16,6 @@ export default function AddForm() {
   } = useForm();
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const onSubmit = (formData) => {
     formData.genres = formData.genres.map((genreSlug) =>
@@ -30,44 +28,7 @@ export default function AddForm() {
     dispatch(addVideogame(formData));
   };
 
-  const genres = useSelector((state) => state.genre.genres);
-  const platforms = useSelector((state) => state.platform.platforms);
-
-  useEffect(() => {
-    dispatch(fetchGenres());
-    dispatch(fetchPlatforms());
-  }, [dispatch]);
-
-  const status = useSelector((state) => state.videogame.status);
-
-  useEffect(() => {
-    if (status === "uploading") {
-      Swal.fire({
-        title: "Uploading your game",
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        }
-      });
-    } else if (status === "added succeeded") {
-      Swal.fire({
-        icon: "success",
-        title: "Game Added",
-        text: "The video game has been successfully added.",
-      }).then(() => {
-        navigate("/")
-      })
-    } else if (status === "failed") {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "An error occurred while adding the video game.",
-      });
-    }
-  }, [status]);
-  
-
-  const videogames = useSelector((state) => state.videogame.videogames);
+  useAlerts(videogameStatus);
 
   return (
     <form
