@@ -38,7 +38,7 @@ export default function CardsContainer({
 
   
   return (
-    <div className="container">
+    <div className="container mt-3">
       <div className="row">
         <div className="my-3 col-6">
           <label htmlFor="sort">Sort</label>

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
-  fetchVideogames,
+  searchVideogames,
   fetchVideogameById,
   deleteVideogame,
 } from "../features/videogame/videogameThunks";
@@ -16,16 +16,15 @@ const useVideogames = () => {
   const id = params.id;
   const navigate = useNavigate();
   const videogameDetail = useSelector((state) => state.videogame.detail);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get("name");
+  const genres = searchParams.get("genres");
+  const platforms = searchParams.get("platforms");
 
   useEffect(() => {
-    if (
-      videogameStatus === "idle" ||
-      videogameStatus === "added succeeded" ||
-      videogameStatus === "game deleted"
-    ) {
-      dispatch(fetchVideogames());
-    }
-  }, [dispatch, videogameStatus]);
+    dispatch(searchVideogames({ name, genres, platforms }));
+  }, [dispatch, name, genres, platforms]);
 
   useEffect(() => {
     dispatch(fetchVideogameById(id));

@@ -6,6 +6,7 @@ import Detail from "./views/Detail/Detail";
 import Form from "./views/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
 import About from "./views/About/About";
+import Results from "./views/Results/Results";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/addVideogame" element={<Form />} />
         <Route path="/about" element={<About />} />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </div>
   );
