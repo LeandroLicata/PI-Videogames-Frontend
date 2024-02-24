@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import useFilters from "../../hooks/useFilters";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Search() {
   const { register, handleSubmit } = useForm();
   const { genres, platforms } = useFilters();
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get("name");
 
   const onSubmit = (data) => {
     navigate(
@@ -21,6 +24,7 @@ export default function Search() {
           className="form-control me-sm-2 bg-dark"
           type="text"
           placeholder="Search..."
+          defaultValue={name}
           {...register("name")}
         />
       </div>

@@ -22,7 +22,6 @@ export default function Results() {
       <div className="mx-2">
         <Search />
       </div>
-
       <div>
         {videogameStatus === "loading" ? (
           <Loading />
