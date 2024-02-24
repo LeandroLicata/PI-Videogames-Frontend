@@ -40,7 +40,7 @@ export default function About() {
         </a>
         <br />
         <a
-          href="https://dev-leandrodev.pantheonsite.io/"
+          href="https://leandro-licata-portfolio.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
