@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useVideogames from "../../hooks/useVideogames";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
@@ -8,6 +8,12 @@ import parse from "html-react-parser";
 export default function Detail() {
   const { videogameStatus, id, videogameDetail, handleDeleteGame } =
     useVideogames();
+
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return videogameStatus === "loading" ? (
     <Loading />
@@ -23,7 +29,7 @@ export default function Detail() {
           <div className="text-center">
             <img
               src={videogameDetail.background_image || "/images/no-signal.avif"}
-              alt="image"
+              alt="videogame"
               className="img-fluid"
             />
           </div>
@@ -38,7 +44,7 @@ export default function Detail() {
           <p className="text-info">Rating</p>
           <p className="">★{videogameDetail.rating}</p>
         </div>
-        <div className="col-md-12 mt-4">
+        <div className="col-md-12 mt-3">
           <p className="text-info">Description</p>
           <div className="">{parse(videogameDetail.description)}</div>
         </div>
@@ -46,13 +52,13 @@ export default function Detail() {
       {videogameDetail.screenshots?.length ? (
         <Screenshots videogameScreenshots={videogameDetail.screenshots} />
       ) : null}
-      <NavLink to="/" className="btn btn-outline-secondary my-2" role="button">
+      <button className="btn btn-outline-secondary my-2" onClick={goBack}>
         Back
-      </NavLink>
+      </button>
       {id.length === 24 ? (
-        <btn className="btn btn-outline-danger my-2" onClick={handleDeleteGame}>
+        <button className="btn btn-outline-danger my-2" onClick={handleDeleteGame}>
           Delete game
-        </btn>
+        </button>
       ) : null}
     </div>
   ) : null;
