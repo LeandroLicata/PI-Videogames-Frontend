@@ -18,9 +18,9 @@ export default function NavBar() {
           </button>
         </div>
         <div className="collapse navbar-collapse" id="navbarColor01">
-          <div className="navbar-brand">
+          <Link to="/" className="navbar-brand">
             <img src="images/logo.png" alt="Logo" style={{ height: 35 }} />
-          </div>
+          </Link>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link text-info" to="/">
