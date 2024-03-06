@@ -14,7 +14,7 @@ export default function CardsContainer({
   setCurrentPage,
 }) {
   const dispatch = useDispatch();
-  
+
   const handleSort = (e) => {
     e.preventDefault();
     const selectedValue = e.target.value;
@@ -36,7 +36,6 @@ export default function CardsContainer({
     dispatch(filterByOrigin(e.target.value));
   }
 
-  
   return (
     <div className="container mt-3">
       <div className="row">
@@ -68,9 +67,9 @@ export default function CardsContainer({
             <option value="api">Official games</option>
           </select>
         </div>
-        
 
-        {videogames.length ? (
+        {
+          // videogames.length ? (
           videogames.slice(startIndex, endIndex).map((videogame, idx) => {
             return (
               <div key={idx} className="col-sm-6 col-md-4 col-lg-3">
@@ -85,9 +84,10 @@ export default function CardsContainer({
               </div>
             );
           })
-        ) : (
-          <h1 className="text-center">Not games found</h1>
-        )}
+          // ) : (
+          // <h1 className="text-center">Not games found</h1>
+          // )
+        }
       </div>
     </div>
   );
