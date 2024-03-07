@@ -1,6 +1,7 @@
 import Filters from "../../components/Filters/Filters";
 import useFilters from "../../hooks/useFilters";
 import Loading from "../../components/Loading/Loading";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const { isLoading } = useFilters();
@@ -19,6 +20,11 @@ export default function Home() {
             alt="landing"
             className="img-fluid"
           />
+        </div>
+        <div className="row">
+          <Link to="/results" className="btn btn-outline-primary my-3 col-12">
+            Click to explore
+          </Link>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ export const fetchVideogameById = createAsyncThunk(
 export const searchVideogames = createAsyncThunk(
   "videogames/searchVideogames",
   async ({ name, genres, platforms }) => {
+    if (name === null) name = ""
     let url = `/videogames?name=${name}`;
     if (genres) url += `&genres=${genres}`;
     if (platforms) url += `&platforms=${platforms}`;
