@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Search() {
   const { register, handleSubmit } = useForm();
-  const { genres, platforms, isLoading } = useFilters();
+  const { genres, platforms } = useFilters();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -15,10 +15,6 @@ export default function Search() {
       `/results?name=${data.name}&genres=${data.genres}&platforms=${data.platforms}`
     );
   };
-
-  if (isLoading) {
-    return <div className="text-center mt-5">Loading...</div>;
-  }
 
   return (
     <form className="row" onSubmit={handleSubmit(onSubmit)}>
