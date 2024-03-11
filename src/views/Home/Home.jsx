@@ -16,7 +16,7 @@ export default function Home() {
         </div>
         <div className="text-center col-md-6 d-none d-md-block">
           <img
-            src="/images/tachikoma.png"
+            src="/images/gaming-characters.png"
             alt="landing"
             className="img-fluid"
           />

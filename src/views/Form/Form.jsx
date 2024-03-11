@@ -11,7 +11,6 @@ export default function AddForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -42,7 +41,7 @@ export default function AddForm() {
         <div className="col-4 d-flex flex-column justify-content-end">
           <div className="form-group d-none d-lg-block">
             <img
-              src="/images/kusanagi motoko.png"
+              src="/images/lara-croft.png"
               alt="Imagen"
               className="img-fluid"
             />

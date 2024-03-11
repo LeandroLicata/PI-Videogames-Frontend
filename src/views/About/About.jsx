@@ -54,7 +54,7 @@ export default function About() {
         </a>
         <br />
         <img
-          src="/images/thank-you.png"
+          src="/images/Crashdance.webp"
           alt="motoko"
           className="img-fluid"
           style={{ height: 200}}
