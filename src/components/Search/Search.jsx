@@ -61,7 +61,7 @@ export default function Search() {
           className="btn btn-outline-secondary my-3 my-sm-3"
           type="submit"
         >
-          Search / Apply filters
+          Search
         </button>
       </div>
     </form>
