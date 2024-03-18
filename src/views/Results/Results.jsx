@@ -19,15 +19,15 @@ export default function Results() {
 
   return (
     <div className="container mt-3">
-      <div className="mx-2">
+      <div className="mx-2 pt-4">
         <Search />
       </div>
-      <div>
+      <div className="pt-1">
         {videogameStatus === "loading" ? (
           <Loading />
         ) : videogameStatus === "failed" ? (
           <Error />
-        ) : (
+                ) : (
           <CardsContainer
             videogames={videogames}
             startIndex={startIndex}
