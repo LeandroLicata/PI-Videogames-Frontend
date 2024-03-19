@@ -69,7 +69,7 @@ export default function CardsContainer({
         </div>
 
         {
-          videogames.length > 0 ? (
+          // videogames.length > 0 ? (
           videogames.slice(startIndex, endIndex).map((videogame, idx) => {
             return (
               <div key={idx} className="col-sm-6 col-md-4 col-lg-3">
@@ -84,9 +84,9 @@ export default function CardsContainer({
               </div>
             );
           })
-          ) : (
-          <h1 className="text-center py-5">No games were found with that criteria.</h1>
-          )
+          // ) : (
+          // <h1 className="text-center py-5">No games were found with that criteria.</h1>
+          // )
         }
       </div>
     </div>

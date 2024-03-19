@@ -1,20 +1,29 @@
 import { useForm } from "react-hook-form";
 import useFilters from "../../hooks/useFilters";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Search() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const { genres, platforms } = useFilters();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const name = searchParams.get("name");
+  const genre = searchParams.get("genres");
+  const platform = searchParams.get("platforms");
 
   const onSubmit = (data) => {
     navigate(
       `/results?name=${data.name}&genres=${data.genres}&platforms=${data.platforms}`
     );
   };
+
+  useEffect(() => {
+    if (name) setValue("name", name);
+    if (genre) setValue("genres", genre);
+    if (platform) setValue("platforms", platform);
+  }, [name, genre, platform, setValue]);
 
   return (
     <form className="row" onSubmit={handleSubmit(onSubmit)}>
