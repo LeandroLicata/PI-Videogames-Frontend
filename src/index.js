@@ -12,8 +12,8 @@ import "bootswatch/dist/vapor/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 // axios.defaults.baseURL = "http://localhost:3001";
-// axios.defaults.baseURL = "https://gamepedia-back.onrender.com";
-axios.defaults.baseURL = "https://gamepedia-back.cyclic.app";
+axios.defaults.baseURL = "https://gamepedia-back.onrender.com";
+// axios.defaults.baseURL = "https://gamepedia-back.cyclic.app";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
