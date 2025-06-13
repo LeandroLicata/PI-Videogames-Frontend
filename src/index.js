@@ -11,9 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/vapor/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-// axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://gamepedia-back.onrender.com";
-// axios.defaults.baseURL = "https://gamepedia-back.cyclic.app";
+// Base URL desde .env
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -28,7 +27,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
