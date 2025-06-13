@@ -1,46 +1,71 @@
-# Getting Started with Create React App and Redux
+# 🎮 Gamepedia - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Este es el **frontend** de Gamepedia, una aplicación web que permite explorar y gestionar información sobre videojuegos. Consume datos del backend propio y de la API externa de [RAWG](https://rawg.io/apidocs).
 
-## Available Scripts
+## 🚀 Tecnologías utilizadas
 
-In the project directory, you can run:
+- **React** – Librería principal para construir la interfaz de usuario.
+- **Redux Toolkit** – Manejo global del estado de la app.
+- **Axios** – Cliente HTTP para comunicarse con el backend.
+- **Bootstrap** – Framework CSS para estilos y diseño responsive.
 
-### `npm start`
+## 💻 Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Buscar videojuegos por nombre.
+- Filtrar y ordenar videojuegos por género, rating y origen (API o DB).
+- Ver detalles completos de cada videojuego.
+- Crear nuevos videojuegos desde un formulario.
+- Eliminar videojuegos creados por el usuario.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Instalación y uso
 
-### `npm test`
+1. **Cloná el repositorio**  
+   ```bash
+   git clone https://github.com/LeandroLicata/PI-Videogames-Frontend
+   cd PI-Videogames-Frontend
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Instalá las dependencias**  
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Configurá el entorno**  
+   Crea un archivo `.env` en la raíz del proyecto y agregá tu URL de backend:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```env
+   REACT_APP_BACKEND_URL=https://gamepedia-back.onrender.com
+   # REACT_APP_BACKEND_URL=http://localhost:3001/
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   > Cambiá el comentario según quieras apuntar al **backend desplegado** (Render) o a tu **backend local**.  
+   > Después de modificar el archivo `.env`, reiniciá el servidor de desarrollo.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Iniciá la aplicación**  
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+   Por defecto se ejecutará en: [http://localhost:3000](http://localhost:3000) (puerto por defecto de CRA).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧠 Estructura del proyecto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+📦src
+ ┣ 📂app         → Configuración global de la app (store, etc.)
+ ┣ 📂components  → Componentes reutilizables (Navbar, Card, Loader, etc.)
+ ┣ 📂features    → Funcionalidades específicas conectadas a Redux Toolkit
+ ┣ 📂hooks       → Custom hooks reutilizables
+ ┣ 📂views       → Vistas principales de la aplicación (Home, Detail, Form, etc.)
+ ┣ 📄index.js    → Punto de entrada de React
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📌 Notas
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Este frontend funciona junto a un backend desarrollado en Node.js, Express y MongoDB. Podés ver su código fuente en:
+🔗 https://github.com/LeandroLicata/PI-Videogames-Backend
+- El backend está desplegado en Render:
+🌐 https://gamepedia-back.onrender.com
+- El frontend está desplegado en Vercel y accesible públicamente en:
+🎮 https://gamepedia-gaming.vercel.app/
+- El diseño es responsive gracias a Bootstrap y pensado para desktop y móviles.
