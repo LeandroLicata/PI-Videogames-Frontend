@@ -28,7 +28,7 @@ const useAlerts = (status) => {
             text: "An error occurred while adding the video game.",
           });
         }
-      }, [status]);
+      }, [status, navigate]);
 };
 
 export default useAlerts;
