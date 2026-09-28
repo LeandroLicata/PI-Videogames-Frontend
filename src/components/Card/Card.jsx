@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 
+// RAWG sirve versiones recortadas de sus imágenes: mucho más livianas para las cards
+const thumbnail = (url) =>
+  url?.includes("media.rawg.io/media/games/")
+    ? url.replace("/media/games/", "/media/crop/600/400/games/")
+    : url;
+
 const VideogameCard = ({
   id,
   name,
@@ -15,7 +21,7 @@ const VideogameCard = ({
         style={{
           maxWidth: 350,
           height: 300,
-          backgroundImage: `url(${background_image || "/images/no-signal.avif"})`,
+          backgroundImage: `url(${thumbnail(background_image) || "/images/no-signal.avif"})`,
         }}
       >
         <div className="card-body d-flex flex-column justify-content-end">

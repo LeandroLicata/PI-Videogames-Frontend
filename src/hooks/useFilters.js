@@ -7,21 +7,20 @@ const useFilters = () => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genre.genres);
   const platforms = useSelector((state) => state.platform.platforms);
-  const [isLoading, setIsLoading] = useState(true);
+  const alreadyLoaded = genres.length > 0 && platforms.length > 0;
+  const [isLoading, setIsLoading] = useState(!alreadyLoaded);
 
   useEffect(() => {
-    setIsLoading(true);
+    // Ya están en el store: no volvemos a pedirlos
+    if (alreadyLoaded) return;
 
-    dispatch(fetchGenres())
-      .then(() => dispatch(fetchPlatforms()))
-      .then(() => {
-        setIsLoading(false);
-      })
+    setIsLoading(true);
+    Promise.all([dispatch(fetchGenres()), dispatch(fetchPlatforms())])
       .catch((error) => {
         console.error("Error fetching genres and platforms:", error);
-
-        setIsLoading(false);
-      });
+      })
+      .finally(() => setIsLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return {

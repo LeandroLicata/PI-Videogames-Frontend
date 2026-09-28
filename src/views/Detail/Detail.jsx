@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useVideogames from "../../hooks/useVideogames";
+import useVideogameDetail from "../../hooks/useVideogameDetail";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
 import Screenshots from "../../components/Screenshots/Screenshots";
@@ -7,7 +7,7 @@ import parse from "html-react-parser";
 
 export default function Detail() {
   const { videogameStatus, id, videogameDetail, handleDeleteGame } =
-    useVideogames();
+    useVideogameDetail();
 
   const navigate = useNavigate();
 

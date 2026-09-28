@@ -1,13 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addVideogame } from "../../features/videogame/videogameThunks";
 import useFilters from "../../hooks/useFilters";
-import useVideogames from "../../hooks/useVideogames";
 import useAlerts from "../../hooks/useAlerts";
 
 export default function AddForm() {
   const { genres, platforms } = useFilters();
-  const { videogameStatus } = useVideogames();
+  const videogameStatus = useSelector((state) => state.videogame.status);
   const {
     register,
     handleSubmit,
